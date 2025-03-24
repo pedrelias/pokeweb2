@@ -1,0 +1,55 @@
+.authenticator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.authenticator > div {
+    background-color: #ffffff; /* Fundo branco para a janela de login */
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 30em;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+#authenticator-content {
+    width: 100%;
+    max-width: 30em;
+    padding: 1.5em;
+}
+
+.authenticator button {
+    width: calc(100% - 20px); /* Ajuste fino para evitar desalinhamento */
+    padding: 12px;
+    background-color: #4285f4; /* Azul do Google */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+button {
+    margin: .5em;
+}
+
+
+input {
+    width: 100%;
+    padding: 1em;
+    margin: .5em 0;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid rgba(15, 15, 15, .3);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}

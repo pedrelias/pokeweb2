@@ -1,0 +1,62 @@
+#home-page {
+  width: 100%;
+  height: 100%;
+}
+
+#home-page-landing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100%;
+}
+
+#landing-left {
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+h1{
+  color: rgb(255, 238, 0);
+  text-shadow: blue;
+  -webkit-text-stroke: 2px blue;
+}
+
+#landing-left-content {
+  text-align: right;
+  padding: 1em 1em 1em 3em;
+}
+
+#landing-left-content h1 {
+  font-size: 5em;
+}
+
+#landing-left-content p {
+  font-size: 3em;
+}
+
+#landing-left-content button {
+  font-size: 2rem;  /* Melhor para responsividade */
+  padding: 10px 20px; /* Mais proporcional */
+  background-color: blue; /* Azul padrão mais agradável */
+  color: white;
+  border: none;
+  border-radius: 4px; /* Mantém um design mais moderno */
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#landing-left-content button:hover {
+  background-color: #1565c0; /* Tom mais escuro no hover */
+  transform: scale(1.05); /* Leve aumento ao passar o mouse */
+}
+

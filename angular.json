@@ -23,6 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            
             "outputPath": "dist/pokeweb2",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -31,6 +32,7 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
+              
               {
                 "glob": "**/*",
                 "input": "public"
@@ -96,7 +98,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/public"
               }
             ],
             "styles": [

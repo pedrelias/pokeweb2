@@ -1,0 +1,73 @@
+<div class="authenticator">
+    <!-- LOGIN -->
+    <div *ngIf="currentView === 'login'">
+      <h2>Login</h2>
+      
+      <input 
+        type="email" 
+        [(ngModel)]="loginData.email" 
+        placeholder="Seu email"
+      >
+      
+      <input 
+        type="password" 
+        [(ngModel)]="loginData.password" 
+        placeholder="Sua senha"
+      >
+      
+      <button (click)="fazerLogin()">Entrar</button>
+      
+      <p>
+        <a (click)="mostrarEsqueciSenha()">Esqueci a senha</a> | 
+        <a (click)="mostrarCadastro()">Criar conta</a>
+      </p>
+    </div>
+  
+    <!-- CADASTRO -->
+    <div *ngIf="currentView === 'register'">
+      <h2>Cadastro</h2>
+      
+      <input 
+        type="email" 
+        [(ngModel)]="registerData.email" 
+        placeholder="Seu email"
+      >
+      
+      <input 
+        type="password" 
+        [(ngModel)]="registerData.password" 
+        placeholder="Crie uma senha"
+      >
+      
+      <input 
+        type="password" 
+        [(ngModel)]="registerData.confirmPassword" 
+        placeholder="Confirme a senha"
+      >
+      
+      <button (click)="fazerCadastro()">Cadastrar</button>
+      
+      <p>
+        Já tem conta? <a (click)="mostrarLogin()">Faça login</a>
+      </p>
+    </div>
+  
+    <!-- ESQUECI A SENHA -->
+    <div *ngIf="currentView === 'forgot'">
+      <h2>Recuperar senha</h2>
+      
+      <input 
+        type="email" 
+        [(ngModel)]="resetData.email" 
+        placeholder="Seu email"
+      >
+      
+      <button (click)="resetarSenha()">Enviar link</button>
+      
+      <p>
+        <a (click)="mostrarLogin()">Voltar ao login</a>
+      </p>
+    </div>
+  </div>
+
+  
