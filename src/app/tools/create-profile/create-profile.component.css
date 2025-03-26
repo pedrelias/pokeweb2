@@ -1,0 +1,40 @@
+#profile {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100vw; /* Garante que a largura seja 100% da tela */
+    z-index: 9;
+    transition-duration: .5s;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#profile-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%; /* Preenche toda a altura da tela */
+    width: 100%; /* Preenche toda a largura da tela */
+    padding: 2em;
+    box-sizing: border-box;
+    background-image: url('/public/pokemons-lendarios.png');
+    background-size: cover; /* Faz a imagem cobrir todo o fundo */
+    background-position: center; /* Centraliza a imagem de fundo */
+    background-repeat: no-repeat; /* Evita repetição da imagem */
+}
+
+input, textarea {
+    width: 100%;
+    padding: 1em;
+    border-radius: 1em;
+    margin-bottom: .5em;
+    resize: none;
+    outline: none;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}

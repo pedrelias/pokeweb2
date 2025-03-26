@@ -3,7 +3,6 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AuthenticatorComponent } from '../../tools/authenticator/authenticator.component';
 
 
-
 @Component({
   selector: 'app-home',
   standalone: false,

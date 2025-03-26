@@ -1,73 +1,78 @@
 <div class="authenticator">
     <!-- LOGIN -->
-    <div *ngIf="currentView === 'login'">
+    <div class="auth-card" *ngIf="currentView === 'login'">
       <h2>Login</h2>
-      
+  
       <input 
         type="email" 
         [(ngModel)]="loginData.email" 
         placeholder="Seu email"
+        class="input-field"
       >
-      
+  
       <input 
         type="password" 
         [(ngModel)]="loginData.password" 
         placeholder="Sua senha"
+        class="input-field"
       >
-      
-      <button (click)="fazerLogin()">Entrar</button>
-      
-      <p>
+  
+      <button (click)="fazerLogin()" class="btn-login">Entrar</button>
+  
+      <p class="auth-links">
         <a (click)="mostrarEsqueciSenha()">Esqueci a senha</a> | 
         <a (click)="mostrarCadastro()">Criar conta</a>
       </p>
     </div>
   
     <!-- CADASTRO -->
-    <div *ngIf="currentView === 'register'">
+    <div class="auth-card" *ngIf="currentView === 'register'">
       <h2>Cadastro</h2>
-      
+  
       <input 
         type="email" 
         [(ngModel)]="registerData.email" 
         placeholder="Seu email"
+        class="input-field"
       >
-      
+  
       <input 
         type="password" 
         [(ngModel)]="registerData.password" 
         placeholder="Crie uma senha"
+        class="input-field"
       >
-      
+  
       <input 
         type="password" 
         [(ngModel)]="registerData.confirmPassword" 
         placeholder="Confirme a senha"
+        class="input-field"
       >
-      
-      <button (click)="fazerCadastro()">Cadastrar</button>
-      
-      <p>
+  
+      <button (click)="fazerCadastro()" class="btn-register">Cadastrar</button>
+  
+      <p class="auth-links">
         Já tem conta? <a (click)="mostrarLogin()">Faça login</a>
       </p>
     </div>
   
     <!-- ESQUECI A SENHA -->
-    <div *ngIf="currentView === 'forgot'">
+    <div class="auth-card" *ngIf="currentView === 'forgot'">
       <h2>Recuperar senha</h2>
-      
+  
       <input 
         type="email" 
         [(ngModel)]="resetData.email" 
         placeholder="Seu email"
+        class="input-field"
       >
-      
-      <button (click)="resetarSenha()">Enviar link</button>
-      
-      <p>
+  
+      <button (click)="resetarSenha()" class="btn-reset">Enviar link</button>
+  
+      <p class="auth-links">
         <a (click)="mostrarLogin()">Voltar ao login</a>
       </p>
     </div>
   </div>
-
   

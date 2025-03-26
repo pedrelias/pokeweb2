@@ -5,6 +5,8 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,9 +17,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HomeComponent } from './pages/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { EmailVerificationComponent } from './pages/email-verification/email-verification.component';
+import { HomeComponent } from './pages/home/home.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
+import { CreateProfileComponent } from './tools/create-profile/create-profile.component';
 
 
 @NgModule({
@@ -26,6 +30,8 @@ import { EmailVerificationComponent } from './pages/email-verification/email-ver
     AuthenticatorComponent,
     HomeComponent,
     EmailVerificationComponent,
+    MainPageComponent,
+    CreateProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,9 @@ import { EmailVerificationComponent } from './pages/email-verification/email-ver
     MatInputModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule
   ],
   providers: [
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { FirebaseError } from 'firebase/app'; // Importa a tipagem do erro do Firebase
 
 @Component({
   selector: 'app-email-verification',
@@ -11,6 +10,7 @@ import { FirebaseError } from 'firebase/app'; // Importa a tipagem do erro do Fi
 })
 export class EmailVerificationComponent implements OnInit {
   emailVerified = false;
+  showCreateProfile = false;
   message = '';
 
   constructor(private afAuth: AngularFireAuth, private router: Router) {}
@@ -21,31 +21,24 @@ export class EmailVerificationComponent implements OnInit {
         this.emailVerified = user.emailVerified;
         if (!this.emailVerified) {
           this.message = "Seu e-mail ainda não foi verificado. Enviamos um link de verificação.";
-          this.sendVerificationEmail(user); // Chama o método para enviar o email
         } else {
-          this.router.navigate([""]); // Redireciona após a verificação
+          this.router.navigate(["/create-profile"]); // Redireciona para a home após verificação
         }
       } else {
-        this.router.navigate([""]); // Redireciona se não estiver logado
+        this.router.navigate(["/"]); // Se não estiver logado, redireciona para login
       }
     });
   }
 
-  sendVerificationEmail(user: any) {
-    if (!user.emailVerified) {
-      user.sendEmailVerification().then(() => {
+  async onResendClick() {
+    const user = await this.afAuth.currentUser;
+    if (user && !user.emailVerified) {
+      try {
+        await user.sendEmailVerification();
         this.message = "Novo e-mail de verificação enviado. Verifique sua caixa de entrada!";
-      }).catch((error: FirebaseError) => { // Tipando o erro como FirebaseError
-        this.message = `Erro ao enviar e-mail: ${error.message}`;
-      });
-    }
-  }
-
-  onResendClick() {
-    this.afAuth.currentUser.then(user => {
-      if (user && !user.emailVerified) {
-        this.sendVerificationEmail(user);
+      } catch (error) {
+        this.message = `Erro ao enviar e-mail: ${error}`;
       }
-    });
+    }
   }
 }
