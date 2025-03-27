@@ -16,13 +16,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmailVerificationComponent } from './pages/email-verification/email-verification.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { CreateProfileComponent } from './tools/create-profile/create-profile.component';
-
+import { ListUsersComponent } from './tools/admin/list-users/list-users.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -32,6 +32,7 @@ import { CreateProfileComponent } from './tools/create-profile/create-profile.co
     EmailVerificationComponent,
     MainPageComponent,
     CreateProfileComponent,
+    ListUsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +43,7 @@ import { CreateProfileComponent } from './tools/create-profile/create-profile.co
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    RouterModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule
   ],

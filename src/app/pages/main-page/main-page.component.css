@@ -1,0 +1,80 @@
+/* Estilização geral para a página de Pokémons */
+.pokemon-card {
+    border: 2px solid #00A0FF; /* Bordas azuis para os cards */
+    border-radius: 10px; /* Bordas arredondadas */
+    background-color: #f8f9fa; /* Fundo claro para os cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.2s ease-in-out; /* Efeito suave ao passar o mouse */
+    margin-bottom: 20px; /* Espaço entre os cards */
+    display: flex; /* Usa flexbox para distribuir imagem e texto */
+    flex-direction: row; /* Disposição horizontal */
+    align-items: center; /* Centraliza os itens verticalmente */
+    padding: 10px; /* Adiciona um pouco de padding interno */
+    height: 150px; /* Define a altura fixa para o card */
+    width: 300px; /* Ocupa a largura disponível */
+}
+
+.pokemon-card:hover {
+    transform: translateY(-10px); /* Levanta o card quando passar o mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta a sombra no hover */
+}
+
+.pokemon-card .card-img-top {
+    height: 150px; /* Limita a altura da imagem */
+    width: 150px; /* Define largura da imagem */
+    object-fit: cover; /* Corta a imagem para manter a proporção */
+    border-radius: 10px; /* Bordas arredondadas na imagem */
+    margin-right: 15px; /* Espaço entre imagem e texto */
+}
+
+.card-body {
+    flex-grow: 1; /* Faz com que o texto ocupe o restante do espaço */
+    display: flex;
+    flex-direction: column; /* Coloca o título e o botão em coluna */
+    justify-content: center; /* Centraliza o texto verticalmente */
+    height: 100%; /* Garante que o conteúdo ocupe toda a altura do card */
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333; /* Cor de texto escuro */
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    background-color: #00A0FF; /* Cor personalizada para o botão */
+    border-color: #00A0FF; /* Cor personalizada da borda */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #007bff; /* Cor mais escura no hover */
+    border-color: #007bff; /* Borda mais escura no hover */
+    transform: scale(1.05); /* Aumenta um pouco o botão ao passar o mouse */
+}
+
+.main {
+    background-color: #f5f5f5; /* Cor de fundo para a área principal */
+    padding: 2rem; /* Adiciona mais espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas na área principal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Garante que a área ocupe toda a altura da tela */
+    flex-direction: column;
+}
+
+h2.mb-4 {
+    color: #00A0FF; /* Cor para o título */
+    font-weight: 600;
+    text-align: center; /* Centraliza o título */
+    margin-bottom: 2rem;
+}
+
+.row {
+    display: flex;
+    flex-direction: column; /* Coloca os cards em coluna */
+    align-items: center; /* Centraliza os cards na tela */
+    gap: 20px; /* Espaço entre os cards */
+}

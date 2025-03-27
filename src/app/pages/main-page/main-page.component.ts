@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent {
-  usuarios = ['Usuário 1', 'Usuário 2', 'Usuário 3', 'Usuário 4'];
 
   pokemons = [
     { name: 'Pikachu', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png' },

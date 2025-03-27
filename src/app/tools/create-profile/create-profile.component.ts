@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { doc, setDoc } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,8 @@ export class CreateProfileComponent implements OnInit {
 
   constructor(
     private firestore: AngularFirestore,
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -36,12 +38,16 @@ export class CreateProfileComponent implements OnInit {
       
       await setDoc(userRef, {
         publicName: name,
-        description: description
+        description: description,
+        isAdmin: false,
+        isHunter: true
       });
 
       alert("Perfil criado com sucesso!");
       nameInput.value = "";
       descriptionInput.value = "";
+      this.router.navigate(['/main-page']);
+      
       
     } catch (err) {
       console.error('Erro ao criar perfil:', err);
