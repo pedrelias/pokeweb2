@@ -50,7 +50,7 @@
     background-color: blue; /* Azul padrão mais agradável */
     color: white;
     border: none;
-    border-radius: 4px; /* Mantém um design mais moderno */
+    border-radius: 1px; /* Mantém um design mais moderno */
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;

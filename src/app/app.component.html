@@ -1,1 +1,18 @@
+<div id="navbar">
+    <div id="navbar-content">
+        <div id="navbar-left">
+            <div  class="navbar-items">PokeWeb</div>
+        </div>
+        <div id="navbar-right">
+            <div *ngIf="!loggedIn()" (click)="onLoginClick()" class="navbar-items">Login</div>
+            <div *ngIf="loggedIn() && userHasProfile" class="navbar-items" >
+                Olá, {{getUsername()}}
+            </div>
+            <div *ngIf="loggedIn()" (click)="onLogoutClick()" class="navbar-items" >Logout</div>
+        </div>
+    </div>
+</div>
+
+
 <router-outlet></router-outlet>
+

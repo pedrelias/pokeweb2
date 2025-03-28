@@ -8,6 +8,7 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,9 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { CreateProfileComponent } from './tools/create-profile/create-profile.component';
 import { ListUsersComponent } from './tools/admin/list-users/list-users.component';
 import { RouterModule } from '@angular/router';
+import { CadastroPokemonComponent } from './tools/admin/cadastro-pokemon/cadastro-pokemon.component';
+
+
 
 @NgModule({
   declarations: [
@@ -33,6 +37,7 @@ import { RouterModule } from '@angular/router';
     MainPageComponent,
     CreateProfileComponent,
     ListUsersComponent,
+    CadastroPokemonComponent
   ],
   imports: [
     BrowserModule,
@@ -45,14 +50,15 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     RouterModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFirestoreModule,
   ],
   providers: [
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
     provideDatabase(() => getDatabase()),
     provideClientHydration(withEventReplay()),
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
   ],
   bootstrap: [AppComponent]
 })

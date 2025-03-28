@@ -5,14 +5,16 @@ import { EmailVerificationComponent } from './pages/email-verification/email-ver
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { CreateProfileComponent } from './tools/create-profile/create-profile.component';
 import { ListUsersComponent } from './tools/admin/list-users/list-users.component';
+import { CadastroPokemonComponent } from './tools/admin/cadastro-pokemon/cadastro-pokemon.component';
 
 export const routes: Routes = [
   {path: "", component: HomeComponent},
-  {path: "email-verification", component: EmailVerificationComponent },
-  {path: "create-profile", component: CreateProfileComponent },
+  {path: "email-verification", component: EmailVerificationComponent},
+  {path: "create-profile", component: CreateProfileComponent},
   {path: "main-page", component: MainPageComponent},
   {path: "list-users", component: ListUsersComponent, canActivate: []},
-  {path: "**", redirectTo: '', pathMatch: 'full' }
+  {path: "cadastro-pokemon", component: CadastroPokemonComponent, canActivate: []},
+  {path: "**", component: HomeComponent}
 ];
 
 @NgModule({
