@@ -1,0 +1,36 @@
+<div class="capture-container">
+    <div *ngIf="loading" class="loading-message">
+      <p>Carregando Pokémon...</p>
+    </div>
+  
+    <div class="error-message">
+      <p> erro </p>
+      <button (click)="loadRandomPokemon()">Tentar novamente</button>
+    </div>
+  
+    <div *ngIf="pokemon && !loading" class="pokemon-display">
+      <img [src]="pokemon.imagemUrl" [alt]="pokemon.nome" class="pokemon-image" />
+      <h2>{{ pokemon.nome }}</h2>
+      
+      <div class="types">
+        <span class="type-badge {{pokemon.tipo1.toLowerCase()}}">{{ pokemon.tipo1 }}</span>
+        <span *ngIf="pokemon.tipo2" class="type-badge {{pokemon.tipo2.toLowerCase()}}">
+          {{ pokemon.tipo2 }}
+        </span>
+      </div>
+  
+      <div class="stats">
+        <div class="hp-bar">
+          <label>HP: {{ hp }}/100</label>
+          <progress [value]="hp" max="100"></progress>
+        </div>
+        <p>Chance de Captura: {{ pokemon.chanceCaptura }}%</p>
+      </div>
+  
+      <div class="actions">
+        <button (click)="attack()" [disabled]="hp <= 0">Atacar</button>
+        <button (click)="tryCapture()" [disabled]="hp > 0">Tentar Capturar</button>
+        <button (click)="loadRandomPokemon()">Novo Pokémon</button>
+      </div>
+    </div>
+  </div>

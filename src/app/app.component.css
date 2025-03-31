@@ -38,3 +38,7 @@
     -webkit-text-stroke: 1px blue;
     margin: 0 1em;
 }
+
+.mat-menu-items{
+    background-color:white;
+}

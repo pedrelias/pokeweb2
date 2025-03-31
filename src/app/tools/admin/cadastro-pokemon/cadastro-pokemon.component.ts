@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PokemonService } from '../../../services/pokemon.service';  // Importando o serviço
+import { PokemonService } from '../../../services/pokemon.service';  
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 
@@ -13,8 +13,11 @@ import { Router } from '@angular/router';
 export class CadastroPokemonComponent implements OnInit {
   pokemonForm!: FormGroup;
   pokemonTipos: string[] = [
-    'fire', 'water', 'grass', 'electric', 'normal', 
-    'bug', 'psychic', 'fairy', 'dark', 'fighting'
+    'Fire', 'Water', 'Grass', 'Electric', 'Normal', 
+    'Bug', 'Psychic', 'Fairy', 'Dark', 'Fighting', 
+    'Steel', 'Ghost', 'Rock', 'Ground', 'Ice', 'Dragon',
+    'Flying', 'Poison'
+
   ];  // 10 tipos de Pokémon
 
   constructor(
@@ -28,7 +31,7 @@ export class CadastroPokemonComponent implements OnInit {
     this.pokemonForm = this.fb.group({
       nome: ['', Validators.required],
       tipo: ['', Validators.required],
-      forca: [0, [Validators.required, Validators.min(1), Validators.max(100)]],
+      tipo2: [''],
       chanceCaptura: [50, [Validators.required, Validators.min(0), Validators.max(100)]],
       imagemUrl: ['', Validators.required]  // Link da imagem
     });

@@ -1,33 +1,36 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { doc, setDoc } from '@firebase/firestore';
+import { Observable, from } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonService {
+  private firestore = inject(AngularFirestore);
 
-  constructor(private firestore: AngularFirestore) {}
+  getRandomPokemon(): Observable<any> {
+    return this.firestore.collection('Pokemons').valueChanges().pipe(
+      take(1),
+      map(pokemons => {
+        if (!pokemons || pokemons.length === 0) {
+          throw new Error('Nenhum Pokémon encontrado');
+        }
+        const randomIndex = Math.floor(Math.random() * pokemons.length);
+        return pokemons[randomIndex];
+      })
+    );
+  }
 
-
-  async addPokemon(pokemonData: any) {
+  async addPokemon(pokemonData: any): Promise<void> {
     try {
-
-      const pokemonRef = doc(this.firestore.firestore, 'Pokemons', pokemonData.nome);
-
-
-      await setDoc(pokemonRef, {
-        nome: pokemonData.nome,
-        tipo: pokemonData.tipo,
-        forca: pokemonData.forca,
-        chanceCaptura: pokemonData.chanceCaptura,
-        imagemUrl: pokemonData.imagemUrl
+      await this.firestore.collection('Pokemons').doc(pokemonData.nome).set({
+        ...pokemonData,
+        dataCadastro: new Date()
       });
-
-      console.log('Pokémon cadastrado com sucesso!');
     } catch (error) {
-      console.error('Erro ao cadastrar Pokémon:', error);
-      throw error;  
+      console.error('Erro ao adicionar Pokémon:', error);
+      throw error;
     }
   }
 }

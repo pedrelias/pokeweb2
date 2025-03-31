@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { AuthenticatorComponent } from './tools/authenticator/authenticator.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,6 +26,8 @@ import { CreateProfileComponent } from './tools/create-profile/create-profile.co
 import { ListUsersComponent } from './tools/admin/list-users/list-users.component';
 import { RouterModule } from '@angular/router';
 import { CadastroPokemonComponent } from './tools/admin/cadastro-pokemon/cadastro-pokemon.component';
+import { CaptureComponent } from './pages/capture/capture.component';
+import { PokedexComponent } from './tools/admin/pokedex/pokedex.component';
 
 
 
@@ -37,12 +40,15 @@ import { CadastroPokemonComponent } from './tools/admin/cadastro-pokemon/cadastr
     MainPageComponent,
     CreateProfileComponent,
     ListUsersComponent,
-    CadastroPokemonComponent
+    CadastroPokemonComponent,
+    CaptureComponent,
+    PokedexComponent
   ],
   imports: [
     BrowserModule,
     MatCardModule,
     MatButtonModule,
+    MatMenuModule,
     MatFormFieldModule,
     MatInputModule,
     AppRoutingModule,

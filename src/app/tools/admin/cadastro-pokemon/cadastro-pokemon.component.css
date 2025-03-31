@@ -1,43 +1,81 @@
+/* Centraliza o container */
 .container {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background: #f9f9f9;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  label {
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
-  input, select {
-    padding: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #aaa;
-    border-radius: 5px;
-  }
-  
-  button {
-    background: #28a745;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:disabled {
-    background: #ccc;
-  }
-  
-  h3 {
-    margin-top: 20px;
-  }
-  
+  display: flex;
+  max-width: 400px;
+  margin: 100px; /* Espaço do topo para evitar sobreposição da navbar */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-top: 8%;
+  margin-left: 35%;
+}
+
+/* Div que envolve o formulário */
+.form-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Formulário */
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; /* Espaço entre os elementos */
+}
+
+/* Cada campo de entrada */
+.form-group {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Rótulos */
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Inputs e selects */
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+/* Botão */
+button {
+  width: 100%;
+  max-width: 300px;
+  background: #28a745;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Botão desabilitado */
+button:disabled {
+  background: #ccc;
+}
+
+/* Alinhamento central do corpo da página */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}

@@ -1,31 +1,39 @@
-<form [formGroup]="pokemonForm" (ngSubmit)="cadastrarPokemon()">
-    <div>
-      <label for="nome">Nome:</label>
-      <input id="nome" formControlName="nome" required />
-    </div>
+<div class="container">
+  <h3>Cadastrar Pokémon</h3>
+  <div class="form-container">
+    <form [formGroup]="pokemonForm" (ngSubmit)="cadastrarPokemon()">
+      
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input id="nome" formControlName="nome" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="tipo">Tipo 1:</label>
+        <select id="tipo" formControlName="tipo" required>
+          <option *ngFor="let tipo of pokemonTipos" [value]="tipo">{{ tipo }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="tipo">Tipo 2 (Opcional):</label>
+        <select id="tipo" formControlName="tipo" required>
+          <option *ngFor="let tipo of pokemonTipos" [value]="tipo">{{ tipo }}</option>
+          <option value="">Nenhum</option> 
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="chanceCaptura">Chance de Captura:</label>
+        <input type="number" id="chanceCaptura" formControlName="chanceCaptura" min="0" max="100" required />
+      </div>
     
-    <div>
-      <label for="tipo">Tipo:</label>
-      <select id="tipo" formControlName="tipo" required>
-        <option *ngFor="let tipo of pokemonTipos" [value]="tipo">{{ tipo }}</option>
-      </select>
-    </div>
-  
-    <div>
-      <label for="forca">Força:</label>
-      <input type="number" id="forca" formControlName="forca" min="1" max="100" required />
-    </div>
-  
-    <div>
-      <label for="chanceCaptura">Chance de Captura:</label>
-      <input type="number" id="chanceCaptura" formControlName="chanceCaptura" min="0" max="100" required />
-    </div>
-  
-    <div>
-      <label for="imagemUrl">Link da Imagem:</label>
-      <input type="text" id="imagemUrl" formControlName="imagemUrl" required />
-    </div>
-  
-    <button type="submit" [disabled]="pokemonForm.invalid">Cadastrar Pokémon</button>
-  </form>
-  
+      <div class="form-group">
+        <label for="imagemUrl">Link da Imagem:</label>
+        <input type="text" id="imagemUrl" formControlName="imagemUrl" required />
+      </div>
+    
+      <button type="submit" [disabled]="pokemonForm.invalid">Cadastrar Pokémon</button>
+    </form>
+  </div>
+</div>
