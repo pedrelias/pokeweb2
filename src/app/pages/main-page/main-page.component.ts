@@ -1,9 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { query } from 'express';
-
+import { PokemonApiService } from '../../services/pokemonapi.service';
 
 @Component({
   selector: 'app-main-page',
@@ -11,16 +8,23 @@ import { query } from 'express';
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css']
 })
-export class MainPageComponent {
+export class MainPageComponent implements OnInit {
   pokemons: any[] = [];
 
-  constructor(private router: Router, private firestore: AngularFirestore) {}
+  constructor(private pokemonApiService: PokemonApiService, private router: Router) {}
 
-  getPokemons(): Observable<any[]> {
-    return this.firestore.collection('pokemons').valueChanges();
+  ngOnInit(): void {
+    this.carregarPokemons();
   }
 
-  capturarPokemon() {
+  carregarPokemons(): void {
+    this.pokemonApiService.getPokemons().subscribe(
+      pokemons => this.pokemons = pokemons,
+      error => console.error('Erro ao carregar Pokémons:', error)
+    );
+  }
+
+  capturarPokemon(): void {
     this.router.navigate(['/capture']);
   }
 }

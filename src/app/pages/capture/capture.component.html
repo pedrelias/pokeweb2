@@ -29,7 +29,7 @@
   
       <div class="actions">
         <button (click)="attack()" [disabled]="hp <= 0">Atacar</button>
-        <button (click)="tryCapture()" [disabled]="hp > 0">Tentar Capturar</button>
+        <button (click)="tryCapture()" [disabled]="hp >= 50">Tentar Capturar</button>
         <button (click)="loadRandomPokemon()">Novo Pokémon</button>
       </div>
     </div>

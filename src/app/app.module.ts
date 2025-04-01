@@ -31,6 +31,7 @@ import { PokedexComponent } from './tools/admin/pokedex/pokedex.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +66,7 @@ import { PokedexComponent } from './tools/admin/pokedex/pokedex.component';
     provideDatabase(() => getDatabase()),
     provideClientHydration(withEventReplay()),
     provideAuth(() => getAuth()),
+  
   ],
   bootstrap: [AppComponent]
 })

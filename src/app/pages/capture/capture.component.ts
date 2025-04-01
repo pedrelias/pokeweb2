@@ -1,71 +1,62 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { PokemonService } from '../../services/pokemon.service';
-
+// capture.component.ts
+import { Component, OnInit } from '@angular/core';
+import { PokemonApiService } from '../../services/pokemonapi.service';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-capture',
   standalone: false,
   templateUrl: './capture.component.html',
-  styleUrls: ['./capture.component.css'],
+  styleUrls: ['./capture.component.css']
 })
 export class CaptureComponent implements OnInit {
-    private pokemonService = inject(PokemonService);
-    
-    pokemon: any = null;
-    hp: number = 100;
-    loading = true;
-    error: string | null = null;
-  
-    ngOnInit(): void {
-      this.loadRandomPokemon();
-    }
-  
-    async loadRandomPokemon(): Promise<void> {
-      try {
-        this.loading = true;
-        this.error = null;
-        
-        const pokemon = await this.pokemonService.getRandomPokemon().toPromise();
-        
-        if (pokemon) {
-          this.pokemon = pokemon;
-          this.hp = 100;
-          this.preloadImage(pokemon.imagemUrl);
-        }
-      } catch (err) {
+  pokemon: any = null;
+  hp: number = 100;
+  loading = true;
+  error: string | null = null;
+
+  constructor(private pokemonApiService: PokemonApiService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.loadRandomPokemon();
+  }
+
+  loadRandomPokemon(): void {
+    this.loading = true;
+    this.error = null;
+    this.pokemonApiService.getRandomPokemon().pipe(
+      tap(pokemon => {
+        this.pokemon = pokemon;
+        this.hp = 100;
+        this.preloadImage(pokemon.imagemUrl);
+      })
+    ).subscribe(
+      () => {},
+      err => {
         this.error = 'Erro ao carregar Pokémon';
         console.error(err);
-      } finally {
-        this.loading = false;
-      }
-    }
-  
-    private preloadImage(url: string): void {
-      const img = new Image();
-      img.src = url;
-    }
+      },
+      () => this.loading = false
+    );
+  }
+
+  private preloadImage(url: string): void {
+    const img = new Image();
+    img.src = url;
+  }
 
   attack(): void {
     if (!this.pokemon || this.hp <= 0) return;
-
-    const damage = Math.floor(Math.random() * 2) === 0 ? 20 : 15;
-    this.hp = Math.max(this.hp - damage, 0);
-    
+    this.hp = Math.max(this.hp - (Math.random() < 0.5 ? 20 : 15), 0);
     if (this.hp === 0) {
-      console.log(`${this.pokemon.nome} foi derrotado!`);
-      // Adicione lógica de captura aqui se desejar
+      alert(`Você derrotou ${this.pokemon.nome}!`);
+      this.router.navigate(['/main-page']);
     }
   }
 
   tryCapture(): void {
     if (!this.pokemon) return;
-    
-    const success = Math.random() * 100 < this.pokemon.chanceCaptura;
-    if (success) {
-      alert(`Você capturou ${this.pokemon.nome}!`);
-      this.loadRandomPokemon(); // Carrega um novo Pokémon após captura
-    } else {
-      alert(`${this.pokemon.nome} escapou! Continue tentando.`);
-    }
+    alert(this.pokemon.chanceCaptura ? `Você capturou ${this.pokemon.nome}!` : `${this.pokemon.nome} escapou! Continue tentando.`);
   }
 }
