@@ -28,7 +28,7 @@ import { RouterModule } from '@angular/router';
 import { CadastroPokemonComponent } from './tools/admin/cadastro-pokemon/cadastro-pokemon.component';
 import { CaptureComponent } from './pages/capture/capture.component';
 import { PokedexComponent } from './tools/admin/pokedex/pokedex.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -59,6 +59,7 @@ import { PokedexComponent } from './tools/admin/pokedex/pokedex.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    HttpClientModule
   ],
   providers: [
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
@@ -66,7 +67,6 @@ import { PokedexComponent } from './tools/admin/pokedex/pokedex.component';
     provideDatabase(() => getDatabase()),
     provideClientHydration(withEventReplay()),
     provideAuth(() => getAuth()),
-  
   ],
   bootstrap: [AppComponent]
 })

@@ -7,6 +7,7 @@ import { CreateProfileComponent } from './tools/create-profile/create-profile.co
 import { ListUsersComponent } from './tools/admin/list-users/list-users.component';
 import { CadastroPokemonComponent } from './tools/admin/cadastro-pokemon/cadastro-pokemon.component';
 import { CaptureComponent } from './pages/capture/capture.component';
+import { PokedexComponent } from './tools/admin/pokedex/pokedex.component';
 
 export const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -16,6 +17,7 @@ export const routes: Routes = [
   {path: "list-users", component: ListUsersComponent, canActivate: []},
   {path: "cadastro-pokemon", component: CadastroPokemonComponent, canActivate: []},
   {path: "capture", component: CaptureComponent},
+  {path: "pokedex", component: PokedexComponent},
   {path: "**", component: HomeComponent}
 ];
 

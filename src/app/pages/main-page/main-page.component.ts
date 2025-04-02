@@ -9,19 +9,10 @@ import { PokemonApiService } from '../../services/pokemonapi.service';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-  pokemons: any[] = [];
 
   constructor(private pokemonApiService: PokemonApiService, private router: Router) {}
 
   ngOnInit(): void {
-    this.carregarPokemons();
-  }
-
-  carregarPokemons(): void {
-    this.pokemonApiService.getPokemons().subscribe(
-      pokemons => this.pokemons = pokemons,
-      error => console.error('Erro ao carregar Pokémons:', error)
-    );
   }
 
   capturarPokemon(): void {

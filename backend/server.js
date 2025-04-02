@@ -15,7 +15,7 @@ admin.initializeApp({
 const db = admin.firestore();
 
 const app = express();
-app.use(cors());
+app.use(cors( ));
 app.use(express.json());
 
 // Rota para buscar os Pokémons do Firestore
@@ -35,22 +35,21 @@ app.get("/pokemons", async (req, res) => {
 
 app.post("/pokemons", async (req, res) => {
     try {
-      const { id, nome, tipo1, tipo2, chanceCaptura, imagemUrl } = req.body;
+      console.log("Recebido na API:", req.body);
+      const {nome, tipo1, tipo2, chanceCaptura, imagemUrl } = req.body;
   
-      if (!id || !nome || !tipo1 || chanceCaptura === undefined) {
+      if (!nome || !tipo1 || chanceCaptura === undefined) {
         return res.status(400).json({ error: "Campos obrigatórios ausentes!" });
       }
 
       const newPokemon = {
-        id,
         nome,
         tipo1,
         tipo2: tipo2 || null,
         chanceCaptura,
         imagemUrl: imagemUrl || "", 
       };
-  
-      await db.collection("Pokemons").doc(id).set(newPokemon);
+      await db.collection("Pokemons").doc(nome).set(newPokemon);
       res.status(201).json({ message: "Pokémon adicionado com sucesso!", pokemon: newPokemon });
     } catch (error) {
       res.status(500).json({ error: "Erro ao adicionar Pokémon", details: error.message });

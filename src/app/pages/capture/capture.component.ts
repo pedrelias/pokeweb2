@@ -1,5 +1,4 @@
-// capture.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PokemonApiService } from '../../services/pokemonapi.service';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
@@ -10,17 +9,64 @@ import { tap } from 'rxjs/operators';
   templateUrl: './capture.component.html',
   styleUrls: ['./capture.component.css']
 })
-export class CaptureComponent implements OnInit {
+export class CaptureComponent implements OnInit, OnDestroy {
   pokemon: any = null;
-  hp: number = 100;
+  hpTotal: number = 0;
+  hpAtual: number = 0;
   loading = true;
   error: string | null = null;
+  battleMusic: HTMLAudioElement | null = null; 
+  victoryMusic: HTMLAudioElement | null = null;
 
   constructor(private pokemonApiService: PokemonApiService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadRandomPokemon();
+    this.playBattleMusic();
   }
+
+  ngOnDestroy(): void {
+    this.stopBattleMusic();
+  }
+
+  playBattleMusic(): void {
+    this.stopBattleMusic();
+    this.battleMusic = new Audio('battle-theme.mp3');
+    this.battleMusic.loop = true;
+    this.battleMusic.volume = 0.5;
+
+    this.battleMusic.play().catch(err => {
+      console.error('Erro ao tocar música de batalha:', err);
+    });
+  }
+
+  stopBattleMusic(): void {
+    if (this.battleMusic) {
+      this.battleMusic.pause();
+      this.battleMusic.currentTime = 0;
+    }
+  }
+
+  playVictoryMusic(): void {
+    this.stopBattleMusic(); // Para a música de batalha primeiro
+  
+    this.victoryMusic = new Audio('victory-theme.mp3');
+    this.victoryMusic.volume = 0.5;
+  
+    this.victoryMusic.play().then(() => {
+      console.log('Música de vitória tocando...');
+    }).catch(err => {
+      console.error('Erro ao tocar música de vitória:', err);
+    });
+  }
+  
+  stopVictoryMusic(): void {
+    if (this.victoryMusic) {
+      this.victoryMusic.pause();
+      this.victoryMusic.currentTime = 0; // Reseta o áudio para o início
+    }
+  }
+  
 
   loadRandomPokemon(): void {
     this.loading = true;
@@ -28,7 +74,8 @@ export class CaptureComponent implements OnInit {
     this.pokemonApiService.getRandomPokemon().pipe(
       tap(pokemon => {
         this.pokemon = pokemon;
-        this.hp = 100;
+        this.hpTotal = Math.ceil(Math.random() * 100); 
+        this.hpAtual = this.hpTotal;
         this.preloadImage(pokemon.imagemUrl);
       })
     ).subscribe(
@@ -42,14 +89,16 @@ export class CaptureComponent implements OnInit {
   }
 
   private preloadImage(url: string): void {
-    const img = new Image();
-    img.src = url;
+    if (typeof window !== 'undefined') { 
+      const img = new Image();
+      img.src = url;
+    }
   }
 
   attack(): void {
-    if (!this.pokemon || this.hp <= 0) return;
-    this.hp = Math.max(this.hp - (Math.random() < 0.5 ? 20 : 15), 0);
-    if (this.hp === 0) {
+    if (!this.pokemon || this.hpTotal <= 0) return;
+    this.hpAtual = Math.max(this.hpAtual - (Math.random() < 0.5 ? 20 : 15), 0);
+    if (this.hpAtual === 0) {
       alert(`Você derrotou ${this.pokemon.nome}!`);
       this.router.navigate(['/main-page']);
     }
@@ -57,6 +106,19 @@ export class CaptureComponent implements OnInit {
 
   tryCapture(): void {
     if (!this.pokemon) return;
-    alert(this.pokemon.chanceCaptura ? `Você capturou ${this.pokemon.nome}!` : `${this.pokemon.nome} escapou! Continue tentando.`);
+    const randomCaptura = Math.random() * 100;
+  
+    if (randomCaptura < this.pokemon.chanceCaptura) {
+      this.playVictoryMusic(); 
+  
+      setTimeout(() => {
+        alert(`🎉 Você capturou ${this.pokemon.nome}!`);
+        this.stopVictoryMusic()
+        this.router.navigate(['/main-page']);
+      }, 100); // Pequeno delay para garantir que o áudio já começou
+    } else {
+      alert(`${this.pokemon.nome} escapou!`);
+      this.router.navigate(['/main-page']);
+    }
   }
 }

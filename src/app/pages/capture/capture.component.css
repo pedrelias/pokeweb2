@@ -1,10 +1,12 @@
 .capture-container {
-    max-width: 500px;
-    margin: 2rem auto;
+    position: relative;
+    margin-top: 125px;
+    margin-left: 550px;
+    max-width: 400px;
     padding: 1.5rem;
     border-radius: 12px;
     background-color: #f8f9fa;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
   }
   
@@ -22,18 +24,8 @@
     margin: 1rem 0;
   }
   
-  .type-badge {
-    padding: 0.25rem 0.75rem;
-    border-radius: 1rem;
-    color: white;
-    font-weight: bold;
-    text-transform: capitalize;
-  }
-  
-  /* Cores para tipos de Pokémon */
-  .type-badge.normal { background-color: #A8A878; }
-  .type-badge.fire { background-color: #F08030; }
-  .type-badge.water { background-color: #6890F0; }
+ 
+
   /* Adicione mais cores conforme necessário */
   
   .stats {

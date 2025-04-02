@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PokemonService } from '../../../services/pokemon.service';  
+import { PokemonApiService } from '../../../services/pokemonapi.service';  
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 
@@ -17,12 +17,11 @@ export class CadastroPokemonComponent implements OnInit {
     'Bug', 'Psychic', 'Fairy', 'Dark', 'Fighting', 
     'Steel', 'Ghost', 'Rock', 'Ground', 'Ice', 'Dragon',
     'Flying', 'Poison'
-
-  ];  // 10 tipos de Pokémon
+  ];
 
   constructor(
     private fb: FormBuilder,
-    private pokemonService: PokemonService,  // Injetando o serviço
+    private pokemonApiService: PokemonApiService, 
     private auth: AngularFireAuth,
     private router: Router
   ) {}
@@ -30,14 +29,14 @@ export class CadastroPokemonComponent implements OnInit {
   ngOnInit() {
     this.pokemonForm = this.fb.group({
       nome: ['', Validators.required],
-      tipo: ['', Validators.required],
+      tipo1: ['', Validators.required],
       tipo2: [''],
       chanceCaptura: [50, [Validators.required, Validators.min(0), Validators.max(100)]],
-      imagemUrl: ['', Validators.required]  // Link da imagem
+      imagemUrl: ['', Validators.required]
     });
   }
 
-  // Função de cadastro do Pokémon
+  // Função de cadastro do Pokémon na API
   async cadastrarPokemon() {
     if (this.pokemonForm.valid) {
       try {
@@ -48,19 +47,29 @@ export class CadastroPokemonComponent implements OnInit {
           return;
         }
 
-        // Dados do Pokémon
         const pokemonData = {
-          ...this.pokemonForm.value,
-          userId: user.uid  // Associando ao usuário autenticado
+          nome: this.pokemonForm.value.nome,
+          tipo1: this.pokemonForm.value.tipo1,
+          tipo2: this.pokemonForm.value.tipo2 || null,
+          chanceCaptura: this.pokemonForm.value.chanceCaptura,
+          imagemUrl: this.pokemonForm.value.imagemUrl,
         };
 
-        // Chamada de API (fazendo o cadastro do Pokémon)
-        await this.pokemonService.addPokemon(pokemonData);
-        alert('Pokémon cadastrado com sucesso!');
-        this.pokemonForm.reset();  
+        // Chama a API para cadastrar o Pokémon
+        this.pokemonApiService.addPokemon(pokemonData).subscribe({
+          next: () => {
+            alert('Pokémon cadastrado com sucesso!');
+            this.pokemonForm.reset();
+          },
+          error: (err) => {
+            console.error('Erro ao cadastrar Pokémon:', err);
+            alert('Erro ao cadastrar Pokémon.');
+          }
+        });
+
       } catch (err) {
-        console.error('Erro ao cadastrar Pokémon:', err);
-        alert('Ocorreu um erro ao cadastrar o Pokémon');
+        console.error('Erro inesperado:', err);
+        alert('Erro inesperado ao cadastrar o Pokémon.');
       }
     }
   }
