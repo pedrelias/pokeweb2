@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { Auth, createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { Router } from '@angular/router'; // Importa Router para navegação
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-authenticator',
@@ -19,7 +19,7 @@ export class AuthenticatorComponent {
   constructor(
     private bottomSheetRef: MatBottomSheetRef,
     private auth: Auth,
-    private router: Router // Injeta Router para redirecionamento
+    private router: Router 
   ) {}
 
   async fazerCadastro() {

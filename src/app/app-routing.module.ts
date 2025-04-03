@@ -8,6 +8,8 @@ import { ListUsersComponent } from './tools/admin/list-users/list-users.componen
 import { CadastroPokemonComponent } from './tools/admin/cadastro-pokemon/cadastro-pokemon.component';
 import { CaptureComponent } from './pages/capture/capture.component';
 import { PokedexComponent } from './tools/admin/pokedex/pokedex.component';
+import { BagComponent } from './pages/bag/bag.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 export const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -18,6 +20,8 @@ export const routes: Routes = [
   {path: "cadastro-pokemon", component: CadastroPokemonComponent, canActivate: []},
   {path: "capture", component: CaptureComponent},
   {path: "pokedex", component: PokedexComponent},
+  {path: "bag", component: BagComponent},
+  {path:"user-profile", component: UserProfileComponent},
   {path: "**", component: HomeComponent}
 ];
 

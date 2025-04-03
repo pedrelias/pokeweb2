@@ -1,3 +1,6 @@
+@import url('https://fonts.cdnfonts.com/css/pokemon-solid');
+
+
 .type-badge {
     padding: 0.25rem 0.75rem;
     border-radius: 1rem;
@@ -5,7 +8,10 @@
     font-weight: bold;
     text-transform: capitalize;
   }
-  
+
+
+
+
   /* Cores para tipos de Pokémon */
   .type-badge.normal { background-color: #A8A878; }
   .type-badge.fire { background-color: #F08030; }

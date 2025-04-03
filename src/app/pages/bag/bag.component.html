@@ -1,0 +1,21 @@
+<div class="container">
+    <h2>Minha Bag de Pokémons</h2>
+    <div *ngIf="pokemons.length === 0">Nenhum Pokémon capturado ainda!</div>
+  
+    <div class="pokemon-list">
+      <div *ngFor="let pokemon of pokemons" class="pokemon-card">
+        <img [src]="pokemon.imagemUrl" [alt]="pokemon.nome">
+        <h3>{{ pokemon.nome }}</h3>
+        <div class="types">
+          <span class="type-badge {{pokemon.tipo1.toLowerCase()}}">{{ pokemon.tipo1 }}</span>
+          <span *ngIf="pokemon.tipo2" class="type-badge {{pokemon.tipo2.toLowerCase()}}">
+            {{ pokemon.tipo2 }}
+          </span>
+        </div>
+        <p>Força: {{ pokemon.forca }}</p>
+        <button (click)="soltarPokemon(pokemon.id)">Soltar</button>
+        <button (click)="fortalecerPokemon(pokemon.id)">Fortalecer</button>
+      </div>
+    </div>
+  </div>
+  

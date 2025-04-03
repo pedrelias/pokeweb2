@@ -29,6 +29,8 @@ import { CadastroPokemonComponent } from './tools/admin/cadastro-pokemon/cadastr
 import { CaptureComponent } from './pages/capture/capture.component';
 import { PokedexComponent } from './tools/admin/pokedex/pokedex.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BagComponent } from './pages/bag/bag.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 
 
@@ -43,7 +45,9 @@ import { HttpClientModule } from '@angular/common/http';
     ListUsersComponent,
     CadastroPokemonComponent,
     CaptureComponent,
-    PokedexComponent
+    PokedexComponent,
+    BagComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

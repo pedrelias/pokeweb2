@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PokemonApiService } from '../../services/pokemonapi.service';
 import { Router } from '@angular/router';
+import { BagService } from '../../services/bag.service';
 import { tap } from 'rxjs/operators';
 
 @Component({
@@ -18,7 +19,7 @@ export class CaptureComponent implements OnInit, OnDestroy {
   battleMusic: HTMLAudioElement | null = null; 
   victoryMusic: HTMLAudioElement | null = null;
 
-  constructor(private pokemonApiService: PokemonApiService, private router: Router) {}
+  constructor(private pokemonApiService: PokemonApiService, private bagService: BagService ,private router: Router) {}
 
   ngOnInit(): void {
     this.loadRandomPokemon();
@@ -113,9 +114,16 @@ export class CaptureComponent implements OnInit, OnDestroy {
   
       setTimeout(() => {
         alert(`🎉 Você capturou ${this.pokemon.nome}!`);
+        this.bagService.addPokemonToBag(this.pokemon).then(() => {
+          console.log('Pokémon adicionado ao bag com sucesso!');
+        }).catch(err => {
+          console.error('Erro ao adicionar Pokémon ao bag:', err);
+        });
+
         this.stopVictoryMusic()
         this.router.navigate(['/main-page']);
-      }, 100); // Pequeno delay para garantir que o áudio já começou
+      }, 100); 
+      
     } else {
       alert(`${this.pokemon.nome} escapou!`);
       this.router.navigate(['/main-page']);

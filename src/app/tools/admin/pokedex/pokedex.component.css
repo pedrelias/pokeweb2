@@ -8,7 +8,7 @@
     max-width: 1000px; /* Define um limite para manter 3 por linha */
     margin: 0 auto; /* Centraliza a lista */
   }
-  
+
   /* Estilização do Card */
   .pokemon-card {
     width: 200px;
