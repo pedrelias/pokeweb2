@@ -19,6 +19,7 @@ export class AppComponent {
   userHasProfile = true;
   private static userDocument: UserDocument | null = null;
   private authSubscription: Subscription | null = null;
+  
 
   constructor(
     private loginSheet: MatBottomSheet,
@@ -34,13 +35,11 @@ export class AppComponent {
         return;
       }
 
-      // Só redireciona para emailVerification se estiver na rota errada
       if (!user.emailVerified && this.router.url !== '/emailVerification') {
         this.router.navigate(["emailVerification"]);
         return;
       }
 
-      // Se o email estiver verificado ou já estiver na página de verificação
       this.getUserProfile(user);
     });
   }
@@ -55,18 +54,28 @@ export class AppComponent {
 
   async getUserProfile(user: User): Promise<void> {
     const userDocRef = doc(this.firestore, 'Users', user.uid);
-    
+
     onSnapshot(userDocRef, (snapshot) => {
       if (snapshot.exists()) {
+        
         AppComponent.userDocument = {
           ...(snapshot.data() as UserDocument),
           userId: user.uid
         };
         this.userHasProfile = true;
-        // Só navega para home se não estiver já na página de verificação
-        if (this.router.url === '/emailVerification') {
-          this.router.navigate([""]);
+        const isAdmin = Boolean(AppComponent.userDocument.isAdmin);
+        const currentRoute = this.router.getCurrentNavigation()?.finalUrl?.toString() || this.router.url;
+
+        if (isAdmin) {
+          if (!currentRoute.includes('/list-users')) {
+            this.router.navigate(["list-users"]);
+          }
+        } else {
+          if (!currentRoute.includes('/main-page')) {
+            this.router.navigate(["main-page"]);
+          }
         }
+        
       } else {
         this.userHasProfile = false;
       }
@@ -90,6 +99,14 @@ export class AppComponent {
     this.loginSheet.open(AuthenticatorComponent);
   }
 
+  isAdmin(): boolean {
+    return AppComponent.userDocument?.isAdmin ?? false;
+  }
+
+  isHunter(): boolean {
+    return AppComponent.userDocument?.isHunter ?? false;
+  }
+
   ngOnDestroy() {
     this.authSubscription?.unsubscribe();
   }
@@ -99,4 +116,6 @@ export interface UserDocument {
   publicName: string;
   description: string;
   userId: string;
+  isAdmin?: boolean; 
+  isHunter?: boolean; 
 }

@@ -1,28 +1,25 @@
 #profile {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 100vw; /* Garante que a largura seja 100% da tela */
-    z-index: 9;
-    transition-duration: .5s;
-    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    transition-duration: .5s;
+    overflow: hidden;
 }
 
 #profile-content {
-    margin-top: 80px;
-    margin-left: 450px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 2em;
-    box-sizing: border-box;
-    background-size: cover;
-    background-position: center; 
-    background-repeat: no-repeat; 
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.7); /* 🔹 Mesmo fundo branco opaco */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 🔹 Mesmo estilo de sombra */
+    text-align: center;
+    position: relative;
 }
 
 input, textarea {
@@ -37,3 +34,13 @@ input, textarea {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+
+.background-image {
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+

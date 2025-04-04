@@ -11,12 +11,13 @@
             </div>
 
             <mat-menu #appMenu>
-                <button mat-menu-item [routerLink]="['/cadastro-pokemon']" routerLinkActive="router link active">Cadastrar Pokemon</button>
-                <button mat-menu-item [routerLink]="['/list-users']" routerLinkActive="router link active">Listar Usuários</button>
-                <button mat-menu-item [routerLink]="['/pokedex']" routerLinkActive="router link active">Pokédex</button>
-                <button mat-menu-item [routerLink]="['/bag']" routerLinkActive="router link active">Bag</button>
-                <button mat-menu-item [routerLink]="['/user-profile']" routerLinkActive="router link active">Editar Perfil</button>
-            </mat-menu>
+                    <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/cadastro-pokemon']" routerLinkActive="router link active">Cadastrar Pokemon</button>
+                    <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/list-users']" routerLinkActive="router link active">Listar Usuários</button>
+                    <button *ngIf="isHunter()" mat-menu-item [routerLink]="['/bag']" routerLinkActive="router link active">Bag</button>
+                    
+                    <button mat-menu-item [routerLink]="['/pokedex']" routerLinkActive="router link active">Pokédex</button>
+                    <button mat-menu-item [routerLink]="['/user-profile']" routerLinkActive="router link active">Editar Perfil</button>
+                </mat-menu>
             <div *ngIf="loggedIn()" (click)="onLogoutClick()" class="navbar-items" >Logout</div>
         </div>
     </div>

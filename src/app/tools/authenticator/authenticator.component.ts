@@ -22,6 +22,8 @@ export class AuthenticatorComponent {
     private router: Router 
   ) {}
 
+
+
   async fazerCadastro() {
     if (this.registerData.password !== this.registerData.confirmPassword) {
       alert('As senhas não coincidem!');

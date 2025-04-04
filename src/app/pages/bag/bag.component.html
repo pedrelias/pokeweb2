@@ -1,3 +1,4 @@
+<img src="articuno.png" class="background-image" />
 <div class="container">
     <h2>Minha Bag de Pokémons</h2>
     <div *ngIf="pokemons.length === 0">Nenhum Pokémon capturado ainda!</div>
@@ -13,8 +14,8 @@
           </span>
         </div>
         <p>Força: {{ pokemon.forca }}</p>
-        <button (click)="soltarPokemon(pokemon.id)">Soltar</button>
-        <button (click)="fortalecerPokemon(pokemon.id)">Fortalecer</button>
+        <button class="botao-soltar" (click)="soltarPokemon(pokemon.id)">Soltar</button>
+        <button class="botao-fortalecer" (click)="fortalecerPokemon(pokemon.id)">Fortalecer</button>
       </div>
     </div>
   </div>

@@ -75,7 +75,7 @@ export class CaptureComponent implements OnInit, OnDestroy {
     this.pokemonApiService.getRandomPokemon().pipe(
       tap(pokemon => {
         this.pokemon = pokemon;
-        this.hpTotal = Math.ceil(Math.random() * 100); 
+        this.hpTotal = Math.ceil(Math.random() * 50) + 50; 
         this.hpAtual = this.hpTotal;
         this.preloadImage(pokemon.imagemUrl);
       })
