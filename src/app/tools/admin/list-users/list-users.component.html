@@ -8,6 +8,7 @@
       <div class="user-card" *ngFor="let user of users$ | async">
         <div class="card-body">
           <h5 class="card-title">Nome: {{ user.publicName || 'Não informado' }}</h5>
+          <h5 class="card-title">Descrição: {{ user.description || 'Não informado' }}</h5>
           <p class="card-text">
             <strong>Caçador:</strong> {{ user.isHunter ? 'Sim' : 'Não' }}<br />
             <strong>Administrador:</strong> {{ user.isAdmin ? 'Sim' : 'Não' }}
