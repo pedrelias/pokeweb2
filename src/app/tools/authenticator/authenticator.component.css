@@ -11,6 +11,8 @@
     overflow: hidden; /* Garante que nada ultrapasse a tela */
 }
 
+
+
 /* Estilo do card de login, cadastro e recuperação */
 .auth-card {
     width: 100%;
