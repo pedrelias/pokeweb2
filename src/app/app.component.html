@@ -1,28 +1,31 @@
-<div id="navbar">
-    <div id="navbar-content">
-        <div id="navbar-left">
-            <div class="navbar-items" [routerLink]="['/main-page']" routerLinkActive="router link active">PokeWeb</div>
-        </div>
-        <div id="navbar-right">
-            <div *ngIf="!loggedIn()" (click)="onLoginClick()" class="navbar-items">Login</div>
-
-            <div *ngIf="loggedIn() && userHasProfile" class="navbar-items" [matMenuTriggerFor]="appMenu">
-                Olá, {{getUsername()}}
-            </div>
-
-            <mat-menu #appMenu>
-                    <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/cadastro-pokemon']" routerLinkActive="router link active">Cadastrar Pokemon</button>
-                    <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/list-users']" routerLinkActive="router link active">Listar Usuários</button>
-                    <button *ngIf="isHunter()" mat-menu-item [routerLink]="['/bag']" routerLinkActive="router link active">Bag</button>
-                    
-                    <button mat-menu-item [routerLink]="['/pokedex']" routerLinkActive="router link active">Pokédex</button>
-                    <button mat-menu-item [routerLink]="['/user-profile']" routerLinkActive="router link active">Editar Perfil</button>
-                </mat-menu>
-            <div *ngIf="loggedIn()" (click)="onLogoutClick()" class="navbar-items" >Logout</div>
-        </div>
+<nav class="navbar navbar-dark bg-dark px-4" id="navbar">
+    <div class="d-flex justify-content-between align-items-center w-100" id="navbar-content">
+      
+      <!-- Esquerda -->
+      <div id="navbar-left">
+        <span class="navbar-items" [routerLink]="['/main-page']">PokeWeb</span>
+      </div>
+  
+      <!-- Direita -->
+      <div id="navbar-right" class="d-flex align-items-center">
+        <span *ngIf="!loggedIn()" (click)="onLoginClick()" class="navbar-items">Login</span>
+  
+        <span *ngIf="loggedIn() && userHasProfile" class="navbar-items" [matMenuTriggerFor]="appMenu">
+          Olá, {{ getUsername() }}
+        </span>
+  
+        <mat-menu #appMenu>
+          <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/cadastro-pokemon']">Cadastrar Pokémon</button>
+          <button *ngIf="isAdmin()" mat-menu-item [routerLink]="['/list-users']">Listar Usuários</button>
+          <button *ngIf="isHunter()" mat-menu-item [routerLink]="['/bag']">Bag</button>
+          <button mat-menu-item [routerLink]="['/pokedex']">Pokédex</button>
+          <button mat-menu-item [routerLink]="['/user-profile']">Editar Perfil</button>
+        </mat-menu>
+  
+        <span *ngIf="loggedIn()" (click)="onLogoutClick()" class="navbar-items">Logout</span>
+      </div>
     </div>
-</div>
-
-
-<router-outlet></router-outlet>
-
+  </nav>
+  
+  <router-outlet></router-outlet>
+  

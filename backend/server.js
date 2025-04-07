@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // Inicializa o Firebase Admin SDK
-const serviceAccount = require("./firebaseConfig.json");
+const serviceAccount = require("./pokeweb.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -22,11 +22,11 @@ app.use(express.json());
 app.get("/pokemons", async (req, res) => {
   try {
     const snapshot = await db.collection("Pokemons").get();
+    console.log("Pokémons encontrados:");
     const pokemons = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
-
     res.status(200).json(pokemons);
   } catch (error) {
     res.status(500).json({ error: "Erro ao buscar Pokémons", details: error.message });
@@ -77,7 +77,7 @@ app.get("/pokemons/random", async (req, res) => {
       id: doc.id,
       ...doc.data(),
     }));
-
+    
     if (pokemons.length === 0) {
       return res.status(404).json({ error: "Nenhum Pokémon encontrado" });
     } 
@@ -89,7 +89,7 @@ app.get("/pokemons/random", async (req, res) => {
   }
 });
 
-// Inicia o servidor na porta 3000
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Servidor rodando na porta " + PORT);

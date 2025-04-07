@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Firestore, collection, collectionData, updateDoc, doc } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, updateDoc, doc, getDocs } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -34,5 +34,20 @@ export class ListUsersComponent implements OnInit {
     updateDoc(userDocRef, { isAdmin: user.isAdmin, isHunter: user.isHunter })
       .then(() => console.log(`Usuário ${user.publicName} atualizado com sucesso!`))
       .catch((error) => console.error('Erro ao atualizar usuário:', error));
+  }
+
+  mostrarPokemons(user: any) {
+    user.showPokemons = !user.showPokemons;
+  
+    if (user.showPokemons && !user.pokemons) {
+      const pokemonsRef = collection(this.firestore, `Users/${user.id}/Bag`);
+      getDocs(pokemonsRef)
+        .then((snapshot: { docs: any[]; }) => {
+          user.pokemons = snapshot.docs.map((doc: { data: () => any; }) => doc.data());
+        })
+        .catch((error: any) => {
+          console.error("Erro ao buscar pokémons do usuário:", error);
+        });
+    }
   }
 }

@@ -6,20 +6,20 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1; /* Coloca a imagem atrás do conteúdo */
+    z-index: -1; 
   }
 
 .pokemon-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px; /* Espaço entre os cards */
-    padding: 80px 20px 20px; /* Ajuste para não ficar colado na navbar */
-    max-width: 1000px; /* Define um limite para manter 3 por linha */
-    margin: 0 auto; /* Centraliza a lista */
+    gap: 20px; 
+    padding: 80px 20px 20px; 
+    max-width: 1000px; 
+    margin: 0 auto;
   }
 
-  /* Estilização do Card */
+
   .pokemon-card {
     width: 200px;
     height: 300px;
@@ -32,17 +32,17 @@
   }
   
   .pokemon-card:hover {
-    transform: scale(1.05); /* Efeito ao passar o mouse */
+    transform: scale(1.05); 
   }
   
-  /* Imagem do Pokémon */
+
   .pokemon-card img {
     width: 90%;
     height: auto;
     border-radius: 5px;
   }
   
-  /* Nome do Pokémon */
+
   .pokemon-card h5 {
     font-family: 'Pokemon Solid';
     margin: 10px 0 5px;
@@ -59,19 +59,19 @@
     font-size: 30px;
   }
 
-  /* Tipo e chance de captura */
+
   .pokemon-card p {
     margin-top: 10px;
     font-size: 14px;
     color: #555;
   }
   
-  /* Garante que a página fique centralizada */
+
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 60px; /* Ajuste para ficar abaixo da navbar */
+    margin-top: 60px; 
   }
   
 

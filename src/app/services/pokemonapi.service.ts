@@ -8,7 +8,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class PokemonApiService {
-  private apiUrl = 'http://localhost:3000/pokemons'; // URL da API
+  private apiUrl = 'http://localhost:3000/pokemons'; 
 
   constructor(private http: HttpClient) {}
 
@@ -23,9 +23,9 @@ export class PokemonApiService {
     );
   }
 
-  // Buscar um Pokémon aleatório
+
   getRandomPokemon(): Observable<any> {
-    console.log('Buscando Pokémon aleatório...');
+    console.log("Requisição sendo feita para:", `${this.apiUrl}/random`);
     return this.http.get<any>(`${this.apiUrl}/random`).pipe(
       catchError(err => {
         console.error('Erro ao buscar Pokémon aleatório:', err);
@@ -34,7 +34,7 @@ export class PokemonApiService {
     );
   }
 
-  // Adicionar um novo Pokémon
+
   addPokemon(pokemon: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, pokemon).pipe(
       catchError(err => {
@@ -44,7 +44,7 @@ export class PokemonApiService {
     );
   }
 
-  // Deletar um Pokémon pelo ID
+
   deletePokemon(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`).pipe(
       catchError(err => {
