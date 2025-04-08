@@ -13,10 +13,10 @@ import { Router } from '@angular/router';
 export class CadastroPokemonComponent implements OnInit {
   pokemonForm!: FormGroup;
   pokemonTipos: string[] = [
-    'Fire', 'Water', 'Grass', 'Electric', 'Normal', 
-    'Bug', 'Psychic', 'Fairy', 'Dark', 'Fighting', 
-    'Steel', 'Ghost', 'Rock', 'Ground', 'Ice', 'Dragon',
-    'Flying', 'Poison'
+    'Bug', 'Dark', 'Dragon', 'Electric', 'Fairy',
+    'Fighting', 'Fire', 'Flying', 'Ghost', 'Grass',
+    'Ground', 'Ice', 'Normal', 'Poison', 'Psychic',
+    'Rock', 'Steel', 'Water'
   ];
 
   constructor(

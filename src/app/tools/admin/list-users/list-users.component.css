@@ -86,6 +86,10 @@
     gap: 16px;
     margin-top: 10px;
   }
+  p{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
   
   .pokemon-card {
     width: 120px;
@@ -101,7 +105,7 @@
     width: 100px;
     height: 100px;
     object-fit: contain;
-    margin-bottom: 8px;
+    margin-bottom: 0;
   }
   
   h4{

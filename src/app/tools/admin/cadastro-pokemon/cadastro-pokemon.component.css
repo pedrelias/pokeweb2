@@ -16,6 +16,15 @@
   margin-left: 35%;
 }
 
+h3{
+  margin: 0;
+  font-family: 'pokemon solid';
+  color: rgb(255, 238, 0);
+  text-shadow: blue;
+  -webkit-text-stroke: 0.2px blue;
+  font-size: 24px;
+}
+
 .background-image {
   position: fixed;
   top: 0;
