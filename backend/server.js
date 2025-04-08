@@ -33,6 +33,7 @@ app.get("/pokemons", async (req, res) => {
   }
 });
 
+//Adicionar pokemon
 app.post("/pokemons", async (req, res) => {
     try {
       console.log("Recebido na API:", req.body);
@@ -56,7 +57,7 @@ app.post("/pokemons", async (req, res) => {
     }
   });
 
-  
+// Rota para Deletar um Pokémon  
 app.delete("/pokemons/:id", async (req, res) => {
     try {
       const { id } = req.params;
@@ -68,6 +69,7 @@ app.delete("/pokemons/:id", async (req, res) => {
       res.status(500).json({ error: "Erro ao deletar Pokémon", details: error.message });
     }
   });
+
 
 // Rota para buscar um Pokémon aleatório
 app.get("/pokemons/random", async (req, res) => {
